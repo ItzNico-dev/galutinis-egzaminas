@@ -2,6 +2,8 @@ import User from '../models/userModel';
 import dotenv from 'dotenv';
 dotenv.config();
 
+const MONGO_URI = process.env.MONGO_URI
+
 export async function registerApointment(req, res) {
   try {
     const { name, lastname, email, registrationDate, registrationTime } =
@@ -23,15 +25,46 @@ export async function registerApointment(req, res) {
 
 export async function getAllUsers(req, res) {
   try {
-    const user = await User.find();
-    res.json(user);
+    const mongoUsers = await User.find({}, { __v: false });
+    const resp = await fetch(MONGO_URI)
+    const users = await resp.json();
+
+    const serialisedUsers = mongoUsers.map(user => {
+      return {
+        id: user._id,
+        name: user.name,
+        lastname: user.lastname,
+        email: user.email,
+        registrationDate: user.registrationDate,
+        registrationTime: user.registrationTime,
+      }
+    })
+    res.json(serialisedUsers);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
   }
 }
+export async function getUserById(req, res) {
+  try {
+    const { id } = req.params.id;
+    const rsep = await fetch(MONGO_URI + '/users/' + id)
+    const user = await rsep.json();
+    const serialisedUser =  {
+      name: user.name,
+      lastname: user.lastname,
+      email: user.email,
+      registrationDate: user.registrationDate,
+      registrationTime: user.registrationTime,
+    }
+    res.json(serialisedUser)
+    
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
-export async function deleteUser(req, res) {
+export async function deleteUserById(req, res) {
   try {
     const { id } = req.params;
 
