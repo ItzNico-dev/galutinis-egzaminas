@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { registerApointment, getAllUsers, updateUserById, deleteUserById, getUserById } from '../controllers';
+import { registerApointment, getAllUsers, updateUserById, deleteUserById, getUserById } from '../controllers/index.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
