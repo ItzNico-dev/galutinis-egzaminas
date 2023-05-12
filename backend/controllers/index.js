@@ -31,13 +31,13 @@ export async function getAllUsers(req, res) {
 
     const serialisedUsers = mongoUsers.map(user => {
       return {
-        id: user._id,
+        userId: user._id,
         name: user.name,
         lastname: user.lastname,
         email: user.email,
         registrationDate: user.registrationDate,
         registrationTime: user.registrationTime,
-      }
+      };
     })
     res.json(serialisedUsers);
   } catch (error) {
