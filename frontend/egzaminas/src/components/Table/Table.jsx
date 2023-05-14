@@ -8,6 +8,14 @@ import {
 import UpdateUserForm from '../UpdateUserForm/UpdateUserForm';
 import CreateUserForm from '../CreateUserForm/CreateUserForm';
 
+
+
+
+
+
+
+
+
 export default function Table() {
   const [users, setUsers] = useState([]);
   const [updateFormData, setUpdateFormData] = useState(null);
@@ -17,24 +25,32 @@ export default function Table() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAllUsers();
-      console.log('res:', res); // add this line
-      setUsers(res.data);
+      setUsers(res);
     };
 
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
-    await deleteUserById(id);
-    const res = await getAllUsers();
-    setUsers(res.data);
-    if (res.data.status === 'success') {
-      alert('User Deleted!');
+  const handleDelete = async (userId) => {
+    try {
+      if (userId) {
+        await deleteUserById(userId);
+        const res = await getAllUsers();
+        if (res) {
+          setUsers(res.data);
+          alert('User Deleted!');
+        } else {
+          alert('Failed to delete user!');
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      alert('User deletion failed!');
     }
   };
 
-  const handleUpdate = async (id, data) => {
-    await updateUserById(id, data);
+  const handleUpdate = async (userId, data) => {
+    await updateUserById(userId, data);
     const res = await getAllUsers();
     setUsers(res.data);
     setShowUpdateForm(false);

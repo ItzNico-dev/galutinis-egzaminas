@@ -5,7 +5,7 @@ dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
 
-export async function registerApointment(req, res) {
+export async function createNewUser(req, res) {
   try {
     const { name, lastname, email, registrationDate, registrationTime } =
       req.body;
@@ -45,25 +45,7 @@ export async function getAllUsers(req, res) {
   }
 }
 
-// export async function getUserById(req, res) {
-//   try {
-//     const { id } = req.params;
-//     const response = await fetch(MONGO_URI + `/api/user/${id}`);
-//     const data = await response.json();
-//     const serialisedUser = {
-//       userId: data.userId,
-//       name: data.name,
-//       lastname: data.lastname,
-//       email: data.email,
-//       registrationDate: data.registrationDate,
-//       registrationTime: data.registrationTime,
-//     };
-//     res.json(serialisedUser);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ error: error.message });
-//   }
-// }
+
 
 export async function deleteUserById(req, res) {
   try {

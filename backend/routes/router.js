@@ -1,15 +1,19 @@
 import express from 'express';
 const router = express.Router();
-import { registerApointment, getAllUsers, updateUserById, deleteUserById,  } from '../controllers/index.js';
+import {
+  createNewUser,
+  getAllUsers,
+  updateUserById,
+  deleteUserById,
+} from '../controllers/index.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
 
 router.get('/api/users', getAllUsers);
-// router.get('/api/users/:id', getUserById);
 
-router.post('/api/user', registerApointment);
+router.post('/api/user', createNewUser);
 router.put('/api/users/:id', updateUserById);
 router.delete('/api/users/:id', deleteUserById);
 

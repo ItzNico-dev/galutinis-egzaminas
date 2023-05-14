@@ -1,39 +1,43 @@
 import axios from 'axios';
-const HOST = 'https://localhost:4000/api';
+
+const HOST = 'http://localhost:4000/api';
 
 export async function createNewUser(body) {
   try {
     const res = await axios.post(`${HOST}/user`, body);
-
     return res.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error('Failed to create a new user. Please try again later.');
   }
 }
 
 export async function getAllUsers() {
   try {
-    const users = await axios.get(`${HOST}/users`);
-    return users.data;
+    const res = await axios.get(`${HOST}/users`);
+    return res.data || [];
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error('Failed to fetch users. Please try again later.');
   }
 }
 
 export async function updateUserById(userId, data) {
   try {
-    const user = await axios.put(`${HOST}/user/${userId}`, data);
-    return user.data;
+    const res = await axios.put(`${HOST}/users/${userId}`, data);
+    return res.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error('Failed to update the user. Please try again later.');
   }
 }
 
 export async function deleteUserById(userId) {
   try {
-    const res = await axios.delete(`${HOST}/user/${userId}`);
-    return res;
+    const res = await axios.delete(`${HOST}/users/${userId}`);
+    return res.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw new Error('Failed to delete the user. Please try again later.');
   }
 }
