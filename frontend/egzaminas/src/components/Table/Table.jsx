@@ -5,6 +5,7 @@ import {
   deleteUserById,
   createNewUser,
 } from '../../api-calls';
+
 import UpdateUserForm from '../UpdateUserForm/UpdateUserForm';
 import CreateUserForm from '../CreateUserForm/CreateUserForm';
 
@@ -17,6 +18,7 @@ export default function Table() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAllUsers();
+      console.log(res);
       setUsers(res);
     };
 
@@ -36,10 +38,10 @@ export default function Table() {
   const handleUpdate = async (userId, data) => {
     await updateUserById(userId, data);
     const res = await getAllUsers();
-    setUsers(res.data);
+    setUsers(res);
     setShowUpdateForm(false);
     setUpdateFormData(null);
-    if (res.data.status === 'success') {
+    if (res.status === 'success') {
       alert('User Updated!');
     }
   };
@@ -71,8 +73,10 @@ export default function Table() {
               <td>{user.name}</td>
               <td>{user.lastname}</td>
               <td>{user.email}</td>
-              <td>{new Date(user.registrationDate).toLocaleDateString()}</td>
-              <td>{new Date(user.registrationTime).toLocaleTimeString()}</td>
+              <td>
+                {new Date(user.registrationDate).toLocaleDateString('LT-lt')}
+              </td>
+              <td>{user.registrationTime}</td>
 
               <td>
                 <button onClick={() => handleDelete(user.userId)}>

@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
     // required: true,
   },
   registrationTime: {
-    type: Number,
+    type: String,
     // required: true,
   },
 });

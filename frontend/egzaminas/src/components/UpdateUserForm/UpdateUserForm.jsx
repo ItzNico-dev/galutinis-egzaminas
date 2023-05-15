@@ -10,7 +10,7 @@ export default function UpdateUserForm({
   const [lastname, setLastname] = useState(formData.lastname);
   const [email, setEmail] = useState(formData.email);
   const [registrationDate, setRegistrationDate] = useState(
-    formData.registrationDate
+    moment(formData.registrationDate).format('YYYY-MM-DD')
   );
   const [registrationTime, setRegistrationTime] = useState(
     formData.registrationTime
@@ -20,14 +20,14 @@ export default function UpdateUserForm({
     setName(formData.name);
     setLastname(formData.lastname);
     setEmail(formData.email);
-    setRegistrationDate(formData.registrationDate);
+    setRegistrationDate(moment(formData.registrationDate).format('YYYY-MM-DD'));
     setRegistrationTime(formData.registrationTime);
   }, [formData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { name, lastname, email, registrationDate, registrationTime };
-    await handleUpdate(formData._id, data);
+    await handleUpdate(formData.userId, data);
   };
 
   return (

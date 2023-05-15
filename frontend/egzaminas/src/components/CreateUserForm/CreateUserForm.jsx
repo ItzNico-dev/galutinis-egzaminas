@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { createNewUser } from '../../api-calls';
 
 export default function CreateUserForm() {
+
+
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -19,6 +21,7 @@ export default function CreateUserForm() {
     try {
       await createNewUser(formData);
       alert('User created successfully!');
+      window.location.reload();
       setFormData({
         name: '',
         lastname: '',
