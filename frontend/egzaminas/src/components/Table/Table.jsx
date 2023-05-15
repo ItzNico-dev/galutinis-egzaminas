@@ -19,7 +19,6 @@ export default function Table() {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAllUsers();
-      console.log(res);
       setUsers(res);
     };
 
@@ -50,7 +49,6 @@ export default function Table() {
   return (
     <TableContainer>
       <h1>Users</h1>
-
       <button onClick={() => setShowCreateForm(true)}>Create User</button>
       {showCreateForm && (
         <CreateUserForm

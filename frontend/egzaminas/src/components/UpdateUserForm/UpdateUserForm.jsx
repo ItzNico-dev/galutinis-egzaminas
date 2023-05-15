@@ -99,7 +99,9 @@ export default function UpdateUserForm({
             />
           </FormGroup>
           <Buttons className='buttons'>
-            <SubmitButton type='submit'>Update</SubmitButton>
+            <SubmitButton type='submit' onClick={handleSubmit}>
+              Update
+            </SubmitButton>
             <CloseButton type='button' onClick={handleClose}>
               Close
             </CloseButton>
