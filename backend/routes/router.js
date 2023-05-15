@@ -6,8 +6,6 @@ import {
   updateUserById,
   deleteUserById,
 } from '../controllers/index.js';
-import dotenv from 'dotenv';
-dotenv.config();
 
 
 router.get('/api/users', getAllUsers);
