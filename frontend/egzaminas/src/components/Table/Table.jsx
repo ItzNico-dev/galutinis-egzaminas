@@ -8,14 +8,6 @@ import {
 import UpdateUserForm from '../UpdateUserForm/UpdateUserForm';
 import CreateUserForm from '../CreateUserForm/CreateUserForm';
 
-
-
-
-
-
-
-
-
 export default function Table() {
   const [users, setUsers] = useState([]);
   const [updateFormData, setUpdateFormData] = useState(null);
@@ -33,16 +25,8 @@ export default function Table() {
 
   const handleDelete = async (userId) => {
     try {
-      if (userId) {
-        await deleteUserById(userId);
-        const res = await getAllUsers();
-        if (res) {
-          setUsers(res.data);
-          alert('User Deleted!');
-        } else {
-          alert('Failed to delete user!');
-        }
-      }
+      await deleteUserById(userId);
+      setUsers(users.filter((user) => user.userId !== userId));
     } catch (error) {
       console.log(error);
       alert('User deletion failed!');
@@ -83,14 +67,17 @@ export default function Table() {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user._id}>
+            <tr key={user.userId}>
               <td>{user.name}</td>
               <td>{user.lastname}</td>
               <td>{user.email}</td>
-              <td>{user.registrationDate}</td>
-              <td>{user.registrationTime}</td>
+              <td>{new Date(user.registrationDate).toLocaleDateString()}</td>
+              <td>{new Date(user.registrationTime).toLocaleTimeString()}</td>
+
               <td>
-                <button onClick={() => handleDelete(user._id)}>Delete</button>
+                <button onClick={() => handleDelete(user.userId)}>
+                  Delete
+                </button>
                 <button
                   onClick={() => {
                     setUpdateFormData(user);

@@ -13,7 +13,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 router.get('/api/users', getAllUsers);
 
-router.post('/api/user', createNewUser);
+router.post('/api/users', createNewUser);
 router.put('/api/users/:id', updateUserById);
 router.delete('/api/users/:id', deleteUserById);
 
