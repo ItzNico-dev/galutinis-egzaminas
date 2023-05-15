@@ -48,7 +48,7 @@ export default function Table() {
 
   return (
     <TableContainer>
-      <h1>Users</h1>
+      <h1>Registered Clients List</h1>
       <button onClick={() => setShowCreateForm(true)}>Create User</button>
       {showCreateForm && (
         <CreateUserForm
