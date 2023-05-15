@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
+import {
+  Modal,
+  ModalContent,
+  Title,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Buttons,
+  SubmitButton,
+  CloseButton,
+} from './UpdateUserForm.styled';
+
 export default function UpdateUserForm({
   formData,
   handleUpdate,
@@ -31,68 +44,68 @@ export default function UpdateUserForm({
   };
 
   return (
-    <div className='modal'>
-      <div className='modal-content'>
-        <h2>Update User</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='name'>Name:</label>
-            <input
+    <Modal>
+      <ModalContent>
+        <Title>Update User</Title>
+        <Form>
+          <FormGroup>
+            <Label>Name:</Label>
+            <Input
               type='text'
               id='name'
               value={name}
               onChange={(event) => setName(event.target.value)}
               required
             />
-          </div>
-          <div>
-            <label htmlFor='lastname'>Lastname:</label>
-            <input
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='lastname'>Lastname:</Label>
+            <Input
               type='text'
               id='lastname'
               value={lastname}
               onChange={(event) => setLastname(event.target.value)}
               required
             />
-          </div>
-          <div>
-            <label htmlFor='email'>Email:</label>
-            <input
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='email'>Email:</Label>
+            <Input
               type='email'
               id='email'
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               required
             />
-          </div>
-          <div>
-            <label htmlFor='registration-date'>Registration Date:</label>
-            <input
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='registration-date'>Registration Date:</Label>
+            <Input
               type='date'
               id='registration-date'
               value={registrationDate}
               onChange={(event) => setRegistrationDate(event.target.value)}
               required
             />
-          </div>
-          <div>
-            <label htmlFor='registration-time'>Registration Time:</label>
-            <input
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor='registration-time'>Registration Time:</Label>
+            <Input
               type='time'
               id='registration-time'
               value={registrationTime}
               onChange={(event) => setRegistrationTime(event.target.value)}
               required
             />
-          </div>
-          <div className='buttons'>
-            <button type='submit'>Update</button>
-            <button type='button' onClick={handleClose}>
+          </FormGroup>
+          <Buttons className='buttons'>
+            <SubmitButton type='submit'>Update</SubmitButton>
+            <CloseButton type='button' onClick={handleClose}>
               Close
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            </CloseButton>
+          </Buttons>
+        </Form>
+      </ModalContent>
+    </Modal>
   );
 }

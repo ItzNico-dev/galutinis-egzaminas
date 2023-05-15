@@ -5,6 +5,7 @@ import {
   deleteUserById,
   createNewUser,
 } from '../../api-calls';
+import { TableContainer } from './Table.styled';
 
 import UpdateUserForm from '../UpdateUserForm/UpdateUserForm';
 import CreateUserForm from '../CreateUserForm/CreateUserForm';
@@ -47,7 +48,9 @@ export default function Table() {
   };
 
   return (
-    <div>
+    <TableContainer>
+      <h1>Users</h1>
+
       <button onClick={() => setShowCreateForm(true)}>Create User</button>
       {showCreateForm && (
         <CreateUserForm
@@ -103,6 +106,6 @@ export default function Table() {
           handleClose={() => setShowUpdateForm(false)}
         />
       )}
-    </div>
+    </TableContainer>
   );
 }

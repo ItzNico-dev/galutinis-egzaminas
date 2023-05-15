@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { createNewUser } from '../../api-calls';
+import { FormContainer, FormGroup, Button } from './CreateUserForm.styled';
 
 export default function CreateUserForm() {
-
-
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -35,38 +34,41 @@ export default function CreateUserForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <FormContainer onSubmit={handleSubmit}>
+      <FormGroup>
         Name:
         <input
           type='text'
           name='name'
           value={formData.name}
           onChange={handleChange}
+          placeholder='Your Name'
         />
-      </label>
+      </FormGroup>
       <br />
-      <label>
+      <FormGroup>
         Last Name:
         <input
           type='text'
           name='lastname'
           value={formData.lastname}
           onChange={handleChange}
+          placeholder='Your Last name'
         />
-      </label>
+      </FormGroup>
       <br />
-      <label>
+      <FormGroup>
         Email:
         <input
           type='email'
           name='email'
           value={formData.email}
           onChange={handleChange}
+          placeholder='Your Email'
         />
-      </label>
+      </FormGroup>
       <br />
-      <label>
+      <FormGroup>
         Registration Date:
         <input
           type='date'
@@ -74,9 +76,9 @@ export default function CreateUserForm() {
           value={formData.registrationDate}
           onChange={handleChange}
         />
-      </label>
+      </FormGroup>
       <br />
-      <label>
+      <FormGroup>
         Registration Time:
         <input
           type='time'
@@ -84,9 +86,9 @@ export default function CreateUserForm() {
           value={formData.registrationTime}
           onChange={handleChange}
         />
-      </label>
+      </FormGroup>
       <br />
-      <button type='submit'>Register</button>
-    </form>
+      <Button type='submit'>Register</Button>
+    </FormContainer>
   );
 }
