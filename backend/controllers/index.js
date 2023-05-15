@@ -1,6 +1,5 @@
 import User from '../models/userModel.js';
 import dotenv from 'dotenv';
-import fetch from 'node-fetch';
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -37,7 +36,6 @@ export async function getAllUsers(req, res) {
         registrationTime: user.registrationTime,
       };
     });
-    // const mergedUsers = [...serialisedUsers, ...data];
     res.json(serialisedUsers);
   } catch (error) {
     console.log(error);
